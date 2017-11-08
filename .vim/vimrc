@@ -1,0 +1,143 @@
+" No vi compatible mode
+set nocompatible
+" Vundle requires filetype detection to be off
+filetype off
+
+"-------------------------------------------------------------------------------
+" Vundle configuration                                                         -
+"-------------------------------------------------------------------------------
+
+" Include Vundle in runtime path and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" Let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" Filesystem tree
+Plugin 'https://github.com/scrooloose/nerdtree.git'
+
+" Fuzzy searching
+Plugin 'https://github.com/ctrlpvim/ctrlp.vim.git'
+
+" Fancy status bar
+Plugin 'https://github.com/bling/vim-airline'
+
+" List/QuickFix toggling
+Plugin 'https://github.com/Valloric/ListToggle.git'
+
+" A database of color schemes; live view at http://bytefluent.com/vivify/
+Plugin 'https://github.com/flazz/vim-colorschemes.git'
+
+" Git integration
+Plugin 'https://github.com/tpope/vim-fugitive.git'
+
+" Highlighting of trailing whitespaces
+Plugin 'https://github.com/ntpeters/vim-better-whitespace.git'
+
+" Better code highlighting for C/C++
+Plugin 'https://github.com/octol/vim-cpp-enhanced-highlight.git'
+
+" Code completion for C/C++
+Plugin 'https://github.com/Valloric/YouCompleteMe.git'
+
+" Finalize Vundle initalization
+call vundle#end()
+filetype plugin indent on
+
+"-------------------------------------------------------------------------------
+" General vim settings                                                         -
+"-------------------------------------------------------------------------------
+
+" Display line numbers
+set number
+
+" Display tabs as 2 spaces
+set tabstop=2
+
+" When indenting with '>' insert 2 spaces
+set shiftwidth=2
+
+" On pressing tab insert 2 spaces
+set expandtab
+
+" Highlight matches when searching
+set hlsearch
+
+" Search as you type
+set incsearch
+
+" Turn on syntax highlighting
+syntax on
+
+" 80 characters wide color column
+set colorcolumn=80
+
+" Display status line all the time
+set laststatus=2
+
+" Don't show preview window during autocompletion
+set completeopt-=preview
+
+" Render tabs as little triangles
+set list
+set listchars=tab:▸\ 
+
+" Disable backup, swap and undo files
+set nobackup
+set noswapfile
+set noundofile
+
+" Set a fancy colorscheme
+colorscheme molokai
+"colorscheme candyman
+
+"-------------------------------------------------------------------------------
+" Plugins configuration                                                        -
+"-------------------------------------------------------------------------------
+
+" No cap for the number of scanned files
+let g:ctrlp_max_files=0
+
+" YouCompleteMe settings
+let g:ycm_always_populate_location_list=1
+
+" Turn on doxygen syntax highlighting
+let g:load_doxygen_syntax=1
+
+"-------------------------------------------------------------------------------
+" GVim specific settings                                                       -
+"-------------------------------------------------------------------------------
+
+if has("gui_running")
+  " No menubar, toolbar, scrollbars; use console dialogs
+  set guioptions=c
+  " Set a fancy font, download from: http://dejavu-fonts.org/wiki/Download
+  set guifont=DejaVu\ Sans\ Mono\ 11
+endif
+
+"-------------------------------------------------------------------------------
+" Key mapping                                                                  -
+"-------------------------------------------------------------------------------
+
+" Get rid of annoying typos
+command WQ wq
+command Wq wq
+command W w
+command Q q
+
+" Replace word under cursor
+nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
+
+" Toggle NERDTree
+nnoremap <F2> :NERDTreeToggle<CR>
+
+" Recompile and update diagnostics
+nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
+" Show window with detail diagnostics
+nnoremap <F6> :YcmCompleter GetType<CR>
+
+" Run clang-format
+map <C-K> :pyf /usr/share/clang/clang-format.py<cr>
+imap <C-K> <c-o>:pyf /usr/share/clang/clang-format.py<cr>
+
