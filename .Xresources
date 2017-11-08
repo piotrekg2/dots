@@ -1,6 +1,6 @@
 xterm*utf8:		1
 xterm*background:	black
 xterm*foreground:	white
-xterm*faceName:		xos4 Terminus:hinting=true:lang=pl
+xterm*faceName:		Terminus:hinting=true:lang=pl
 xterm*faceSize:		10
 
